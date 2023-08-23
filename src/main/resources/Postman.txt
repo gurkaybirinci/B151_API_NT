@@ -1,0 +1,71 @@
+-------------------------------------------------------
+Get Contact List
+    0. Token Ekleme
+    1. Contact Listesi getirme
+    2. url variable tanımlama
+
+-------------------------------------------------------
+Post Contact
+    0. Token Ekleme
+    1. Post yapma
+    2. Body'ye variable'dan veri getirme
+
+        {
+            "firstName": "{{firstName}}",
+            "lastName": "{{lastName}}",
+            "birthdate": "1970-01-01",
+            "email": "jdoe@fake.com",
+            "phone": "8005555555",
+            "street1": "1 Main St.",
+            "street2": "Apartment A",
+            "city": "Anytown",
+            "stateProvince": "KS",
+            "postalCode": "12345",
+            "country": "USA"
+        }
+
+3. ID alma = pm.collectionVariables.set("id", pm.response.json()._id)
+
+-------------------------------------------------------
+Get Contact with ID
+    0. Token Ekleme
+    1. url kısmını tanımla = {{url}}/contacts/{{id}}
+    2. Testleri yap
+
+
+    // Status Code testi
+    pm.test("Status code is 200", function () {
+        pm.response.to.have.status(200);
+    });
+
+    // Status Code Metni testi
+    pm.test("Status code name has string", function () {
+        pm.response.to.have.status("OK");
+    });
+
+    // Time testi
+    pm.test("Content-Type is present", function () {
+        pm.response.to.have.header("Content-Type");
+    });
+
+    // Header var mı tesi
+    pm.test("Content-Type is present", function () {
+        pm.response.to.have.header("Content-Type");
+    });
+
+    // Header değeri testi
+    pm.test("Header Values Test", ()=>{
+        pm.expect(pm.response.headers.get("Server")).to.eql("Cowboy")
+    });
+
+    // Body'de var mı testi
+    pm.test("Body matches string", function () {
+        pm.expect(pm.response.text()).to.include("John");
+    });
+
+    // Body değeri testi
+    pm.test("Data Value Test", function () {
+        var jsonData = pm.response.json();
+        pm.expect(jsonData.firstName).to.eql("John");
+        pm.expect(jsonData.lastName).to.eql("Doe");
+    });
